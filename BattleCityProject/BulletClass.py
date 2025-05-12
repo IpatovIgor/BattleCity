@@ -1,5 +1,7 @@
 import pygame
 
+import PlayerClass
+
 
 class Bullet:
     Boom_animation_slide = 0
@@ -34,6 +36,8 @@ class Bullet:
         rect = self.Drive_animation[self.Animation_dir].get_rect(topleft=(x, y))
         for brick in brick_list:
             if rect.colliderect(brick.Rectangle) and brick.Can_destroy is True:
+                if type(brick) == PlayerClass.Player and brick.Can_to_die is False:
+                    brick.life += self.Damage
                 brick.life -= self.Damage
                 self.Is_boom = True
                 return False
