@@ -27,7 +27,7 @@ class Bullet:
         self.Y = y
 
     def Can_move(self, x, y, brick_list):
-        if x < 0 or x > 790:
+        if x < 0 or x > 660:
             self.Is_boom = True
             return False
         if y < 0 or y > 502:

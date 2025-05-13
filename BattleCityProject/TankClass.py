@@ -63,7 +63,7 @@ class Tank:
         self.Spawn_slide %= 4
 
     def Can_move(self, x, y, brick_list):
-        if 0 > x or x > 757:
+        if 0 > x or x > 620:
             return False
         if 0 > y or y > 469:
             return False

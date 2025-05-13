@@ -7,17 +7,22 @@ import SpawnClass
 
 
 class Update:
-    def __init__(self, bullet_list, object_in_map, screen):
+    def __init__(self, bullet_list, object_in_map, screen, brush_list, stat_panel, ):
         self.Bullet_list = bullet_list
         self.Objects_in_map = object_in_map
         self.Screen = screen
         self.timer = threading.Timer(2.0, self.Lost_game)
         self.Player_swan = SpawnClass.Player_spawn(100, 100, object_in_map)
-        self.Tank_spawn = SpawnClass.Tank_spawn(object_in_map)
+        self.Tank_spawn = SpawnClass.Tank_spawn(object_in_map, 10)
+        self.Brush_list = brush_list
+        self.Stat_panel = stat_panel
 
     def Lost_game(self):
         self.Game_is_Lost = True
 
+    Stat_panel = 0
+    Tank_lifes = 3
+    Spawn = 0
     timer = 0
     Timer_is_work = False
     Screen = 0
@@ -27,6 +32,7 @@ class Update:
     Space_pressed_prev = False
     Player_swan = 0
     Tank_spawn = 0
+    Brush_list = []
 
     def Update_bullets(self):
         was_boomed = 0
@@ -38,19 +44,25 @@ class Update:
                 self.Bullet_list[bullet_index - was_boomed].Update(self.Screen, self.Objects_in_map)
 
     def Update_object(self):
-        self.Player_swan.Spawn()
+        if self.Tank_lifes != 0:
+            self.Player_swan.Spawn()
         was_removed = 0
         for i in range(len(self.Objects_in_map)):
             if type(self.Objects_in_map[i - was_removed]) == PlayerClass.Player:
                 if self.Objects_in_map[i - was_removed].WasBoom:
                     self.Objects_in_map.pop(i - was_removed)
+                    self.Tank_lifes -= 1
                     self.Player_swan.Count_of_Plyer = 0
                     was_removed += 1
+                    if self.Tank_lifes == 0:
+                        self.timer.start()
+                        return
                 else:
                     self.Update_player(self.Objects_in_map[i - was_removed])
             elif type(self.Objects_in_map[i - was_removed]) == TankClass.Tank:
                 if self.Objects_in_map[i - was_removed].WasBoom:
                     self.Objects_in_map.pop(i - was_removed)
+                    self.Tank_spawn.Count_of_tanks -= 1
                     was_removed += 1
                 else:
                     self.Objects_in_map[i - was_removed].Update(self.Objects_in_map, self.Screen, self.Bullet_list)
@@ -84,3 +96,13 @@ class Update:
             self.Space_pressed_prev = True
         if keys[pygame.K_SPACE] is False:
             self.Space_pressed_prev = False
+
+    def Update_brush(self):
+        for brush in self.Brush_list:
+            brush.Print(self.Screen)
+
+    Heart = pygame.transform.scale(pygame.image.load('Images/Heart.png'), (30, 30))
+
+    def Update_stat(self):
+        for i in range(self.Tank_lifes):
+            self.Stat_panel.blit(self.Heart, (0 + i * 43, 0))

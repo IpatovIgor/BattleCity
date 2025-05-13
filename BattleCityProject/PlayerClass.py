@@ -6,7 +6,7 @@ import threading
 class Player:
     Direction = 0
     Can_destroy = True
-    life = 10
+    life = 1
     tank_status = 0
     Boom_animation = [pygame.transform.scale(pygame.image.load('Images/TankBoom1.png'), (34, 34)),
                       pygame.transform.scale(pygame.image.load('Images/TankBoom1.png'), (43, 43))]
@@ -62,7 +62,7 @@ class Player:
         surface.blit(self.Boom_animation[self.Boom_animation_slide], (self.X, self.Y))
 
     def Can_move(self, x, y, brick_list):
-        if 0 > x or x > 757:
+        if 0 > x or x > 620:
             return False
         if 0 > y or y > 469:
             return False
