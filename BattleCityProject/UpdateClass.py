@@ -54,8 +54,9 @@ class Update:
                     self.Tank_lifes -= 1
                     self.Player_swan.Count_of_Plyer = 0
                     was_removed += 1
-                    if self.Tank_lifes == 0:
+                    if self.Tank_lifes == 0 and self.Timer_is_work is False:
                         self.timer.start()
+                        self.Timer_is_work = True
                         return
                 else:
                     self.Update_player(self.Objects_in_map[i - was_removed])
@@ -79,6 +80,10 @@ class Update:
                 else:
                     self.Objects_in_map[i - was_removed].Print(self.Screen)
         self.Tank_spawn.Spawn()
+
+        if self.Tank_spawn.Tank_was_spawn == self.Tank_spawn.Tank_limit and self.Tank_spawn.Count_of_tanks == 0 and self.Timer_is_work is False:
+            self.timer.start()
+            self.Timer_is_work = True
 
     def Update_player(self, player):
         player.Print(self.Screen)
