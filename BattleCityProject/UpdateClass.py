@@ -12,7 +12,7 @@ class Update:
         self.Objects_in_map = object_in_map
         self.Screen = screen
         self.timer = threading.Timer(2.0, self.Lost_game)
-        self.Player_swan = SpawnClass.Player_spawn(100, 100, object_in_map)
+        self.Player_swan = SpawnClass.Player_spawn(150, 450, object_in_map)
         self.Tank_spawn = SpawnClass.Tank_spawn(object_in_map, 10)
         self.Brush_list = brush_list
         self.Stat_panel = stat_panel

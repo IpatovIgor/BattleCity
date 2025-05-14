@@ -43,7 +43,7 @@ class Tank_spawn:
 
     def Spawn(self):
         self.X = random.randint(1, 640)
-        self.Y = random.randint(1, 400)
+        self.Y = random.randint(1, 120)
         if self.Count_of_tanks < 4 and self.Can_spawn(self.X, self.Y) and self.Tank_was_spawn < self.Tank_limit:
             self.Object_list.append(TankClass.Tank(self.X, self.Y))
             self.Tank_was_spawn += 1
