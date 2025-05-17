@@ -13,7 +13,7 @@ class IronBlock:
     X = -1
     Y = -1
 
-    life = 5
+    life = 10
 
     def Print(self, surface):
         surface.blit(self.Brick_picture, (self.X, self.Y))

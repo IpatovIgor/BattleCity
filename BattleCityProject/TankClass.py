@@ -14,14 +14,7 @@ class Tank:
                        pygame.transform.scale(pygame.image.load('Images/Spawn2.png'), (43, 43)),
                        pygame.transform.scale(pygame.image.load('Images/Spawn3.png'), (43, 43)),
                        pygame.transform.scale(pygame.image.load('Images/Spawn4.png'), (43, 43))]
-    Animation_list = [[pygame.transform.scale(pygame.image.load('Images/GreenTank11.png'), (34, 43)),
-                  pygame.transform.scale(pygame.image.load('Images/GreenTank12.png'), (34, 43))],
-                 [pygame.transform.scale(pygame.image.load('Images/GreenTank21.png'), (43, 34)),
-                  pygame.transform.scale(pygame.image.load('Images/GreenTank22.png'), (43, 34))],
-                 [pygame.transform.scale(pygame.image.load('Images/GreenTank31.png'), (34, 43)),
-                  pygame.transform.scale(pygame.image.load('Images/GreenTank32.png'), (34, 43))],
-                 [pygame.transform.scale(pygame.image.load('Images/GreenTank41.png'), (43, 34)),
-                  pygame.transform.scale(pygame.image.load('Images/GreenTank42.png'), (43, 34))]]
+    Animation_list = 0
     Boom_animation = [pygame.transform.scale(pygame.image.load('Images/TankBoom1.png'), (34, 34)),
                       pygame.transform.scale(pygame.image.load('Images/TankBoom1.png'), (43, 43))]
     Spawn_slide = 0
@@ -37,13 +30,17 @@ class Tank:
     WasBoom = False
     next_dir = -1
     Timer = 0
+    Damage = 0
 
-    def __init__(self, tank_x, tank_y):
+    def __init__(self, tank_x, tank_y, animation, speed, damage):
         self.X = tank_x
         self.Y = tank_y
         self.Rectangle = self.Spawn_animation[self.Spawn_slide].get_rect(topleft=(tank_x, tank_y))
         timer = threading.Timer(4.0, self.Stop_spawn_animation)
         timer.start()
+        self.Animation_list = animation
+        self.Speed = speed
+        self.Damage = damage
 
     def __eq__(self, other):
         return self.X == other.X and self.Y == other.Y
@@ -130,13 +127,13 @@ class Tank:
     def Shoot(self, bullet_list):
         bullet = -1
         if self.Direction == 0:
-            bullet = BulletClass.Bullet("Up", self.X + 14, self.Y - 5)
+            bullet = BulletClass.Bullet("Up", self.X + 14, self.Y - 5, self.Damage)
         elif self.Direction == 1:
-            bullet = BulletClass.Bullet("Right", self.X + 38, self.Y + 14)
+            bullet = BulletClass.Bullet("Right", self.X + 38, self.Y + 14, self.Damage)
         elif self.Direction == 2:
-            bullet = BulletClass.Bullet("Down", self.X + 14, self.Y + 38)
+            bullet = BulletClass.Bullet("Down", self.X + 14, self.Y + 38, self.Damage)
         elif self.Direction == 3:
-            bullet = BulletClass.Bullet("Left", self.X - 2, self.Y + 14)
+            bullet = BulletClass.Bullet("Left", self.X - 2, self.Y + 14, self.Damage)
         bullet_list.append(bullet)
 
     def Update(self, object_list, screen, bullet_list):

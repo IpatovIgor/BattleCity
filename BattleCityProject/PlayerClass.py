@@ -6,7 +6,7 @@ import threading
 class Player:
     Direction = 0
     Can_destroy = True
-    life = 1
+    life = 2
     tank_status = 0
     Boom_animation = [pygame.transform.scale(pygame.image.load('Images/TankBoom1.png'), (34, 34)),
                       pygame.transform.scale(pygame.image.load('Images/TankBoom1.png'), (43, 43))]
@@ -127,11 +127,11 @@ class Player:
     def Shoot(self, bullet_list):
         bullet = -1
         if self.Direction == 0:
-            bullet = BulletClass.Bullet("Up", self.X + 14, self.Y - 5)
+            bullet = BulletClass.Bullet("Up", self.X + 14, self.Y - 5, 2)
         elif self.Direction == 1:
-            bullet = BulletClass.Bullet("Right", self.X + 38, self.Y + 14)
+            bullet = BulletClass.Bullet("Right", self.X + 38, self.Y + 14, 2)
         elif self.Direction == 2:
-            bullet = BulletClass.Bullet("Down", self.X + 14, self.Y + 38)
+            bullet = BulletClass.Bullet("Down", self.X + 14, self.Y + 38, 2)
         elif self.Direction == 3:
-            bullet = BulletClass.Bullet("Left", self.X - 2, self.Y + 14)
+            bullet = BulletClass.Bullet("Left", self.X - 2, self.Y + 14, 2)
         bullet_list.append(bullet)

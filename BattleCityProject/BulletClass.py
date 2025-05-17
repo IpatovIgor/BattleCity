@@ -21,8 +21,9 @@ class Bullet:
     Was_boom = False
     Is_boom = False
 
-    def __init__(self, direction, x, y):
+    def __init__(self, direction, x, y, damage):
         self.Direction = direction
+        self.Damage = damage
         self.X = x
         self.Y = y
 

@@ -7,15 +7,18 @@ import SpawnClass
 
 
 class Update:
-    def __init__(self, bullet_list, object_in_map, screen, brush_list, stat_panel, ):
+    def __init__(self, bullet_list, object_in_map, screen, brush_list, stat_panel, tank_limit):
         self.Bullet_list = bullet_list
         self.Objects_in_map = object_in_map
         self.Screen = screen
-        self.timer = threading.Timer(2.0, self.Lost_game)
+        self.timer = threading.Timer(3.0, self.Lost_game)
         self.Player_swan = SpawnClass.Player_spawn(150, 450, object_in_map)
-        self.Tank_spawn = SpawnClass.Tank_spawn(object_in_map, 10)
+        self.Tank_spawn = SpawnClass.Tank_spawn(object_in_map, tank_limit)
         self.Brush_list = brush_list
         self.Stat_panel = stat_panel
+
+    Game_over_image = [pygame.transform.scale(pygame.image.load('Images/GameOver.png'), (400, 200)),
+                       pygame.transform.scale(pygame.image.load('Images/Pause.png'), (400, 150))]
 
     def Lost_game(self):
         self.Game_is_Lost = True
@@ -33,8 +36,15 @@ class Update:
     Player_swan = 0
     Tank_spawn = 0
     Brush_list = []
+    Game_win = False
+    Showing_game_over = False
+    Back_ground_image = pygame.transform.scale(pygame.image.load('Images/backGround.png'), (800, 512))
 
     def Update_bullets(self):
+        if self.Showing_game_over:
+            self.Screen.blit(self.Back_ground_image, (0, 0))
+            self.Screen.blit(self.Game_over_image[int(self.Game_win)], (200, 120))
+            return
         was_boomed = 0
         for bullet_index in range(len(self.Bullet_list)):
             if self.Bullet_list[bullet_index - was_boomed].Was_boom is True:
@@ -44,6 +54,8 @@ class Update:
                 self.Bullet_list[bullet_index - was_boomed].Update(self.Screen, self.Objects_in_map)
 
     def Update_object(self):
+        if self.Showing_game_over:
+            return
         if self.Tank_lifes != 0:
             self.Player_swan.Spawn()
         was_removed = 0
@@ -57,6 +69,7 @@ class Update:
                     if self.Tank_lifes == 0 and self.Timer_is_work is False:
                         self.timer.start()
                         self.Timer_is_work = True
+                        self.Showing_game_over = True
                         return
                 else:
                     self.Update_player(self.Objects_in_map[i - was_removed])
@@ -71,6 +84,7 @@ class Update:
                 if self.Objects_in_map[i - was_removed].life <= 0 and self.Timer_is_work is False:
                     self.timer.start()
                     self.Timer_is_work = True
+                    self.Showing_game_over = True
                 else:
                     self.Objects_in_map[i - was_removed].Print(self.Screen)
             else:
@@ -83,9 +97,13 @@ class Update:
 
         if self.Tank_spawn.Tank_was_spawn == self.Tank_spawn.Tank_limit and self.Tank_spawn.Count_of_tanks == 0 and self.Timer_is_work is False:
             self.timer.start()
+            self.Showing_game_over = True
+            self.Game_win = True
             self.Timer_is_work = True
 
     def Update_player(self, player):
+        if self.Showing_game_over:
+            return
         player.Print(self.Screen)
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:
@@ -103,11 +121,19 @@ class Update:
             self.Space_pressed_prev = False
 
     def Update_brush(self):
+        if self.Showing_game_over:
+            return
         for brush in self.Brush_list:
             brush.Print(self.Screen)
 
     Heart = pygame.transform.scale(pygame.image.load('Images/Heart.png'), (30, 30))
+    Tank_image = pygame.transform.scale(pygame.image.load('Images/GreenTank11.png'), (30, 30))
 
     def Update_stat(self):
+        if self.Showing_game_over:
+            return
         for i in range(self.Tank_lifes):
             self.Stat_panel.blit(self.Heart, (0 + i * 43, 0))
+
+        for i in range(self.Tank_spawn.Tank_limit - self.Tank_spawn.Tank_was_spawn):
+            self.Stat_panel.blit(self.Tank_image, (0 + (i % 2) * 43, (50 + (i // 2) * 50)))

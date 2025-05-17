@@ -32,6 +32,23 @@ class Tank_spawn:
     Y = 0
     Tank_was_spawn = 0
     Tank_limit = 10
+    Normal_tank = [[pygame.transform.scale(pygame.image.load('Images/GreenTank11.png'), (34, 43)),
+                  pygame.transform.scale(pygame.image.load('Images/GreenTank12.png'), (34, 43))],
+                 [pygame.transform.scale(pygame.image.load('Images/GreenTank21.png'), (43, 34)),
+                  pygame.transform.scale(pygame.image.load('Images/GreenTank22.png'), (43, 34))],
+                 [pygame.transform.scale(pygame.image.load('Images/GreenTank31.png'), (34, 43)),
+                  pygame.transform.scale(pygame.image.load('Images/GreenTank32.png'), (34, 43))],
+                 [pygame.transform.scale(pygame.image.load('Images/GreenTank41.png'), (43, 34)),
+                  pygame.transform.scale(pygame.image.load('Images/GreenTank42.png'), (43, 34))]]
+
+    Fast_tank = [[pygame.transform.scale(pygame.image.load('Images/FastTank11.png'), (34, 43)),
+                       pygame.transform.scale(pygame.image.load('Images/fastTank12.png'), (34, 43))],
+                      [pygame.transform.scale(pygame.image.load('Images/FastTank21.png'), (43, 34)),
+                       pygame.transform.scale(pygame.image.load('Images/FastTank22.png'), (43, 34))],
+                      [pygame.transform.scale(pygame.image.load('Images/FastTank31.png'), (34, 43)),
+                       pygame.transform.scale(pygame.image.load('Images/FastTank32.png'), (34, 43))],
+                      [pygame.transform.scale(pygame.image.load('Images/FastTank41.png'), (43, 34)),
+                       pygame.transform.scale(pygame.image.load('Images/FastTank42.png'), (43, 34))]]
 
     def Can_spawn(self, x, y):
         rect = pygame.transform.scale(pygame.image.load('Images/GreenTank11.png'), (34, 43)).get_rect(topleft=(x, y))
@@ -40,11 +57,14 @@ class Tank_spawn:
                 return False
         return True
 
-
     def Spawn(self):
         self.X = random.randint(1, 640)
         self.Y = random.randint(1, 120)
+        type_of_tank = random.randint(1, 2)
         if self.Count_of_tanks < 4 and self.Can_spawn(self.X, self.Y) and self.Tank_was_spawn < self.Tank_limit:
-            self.Object_list.append(TankClass.Tank(self.X, self.Y))
+            if type_of_tank == 1:
+                self.Object_list.append(TankClass.Tank(self.X, self.Y, self.Normal_tank, 4, 2))
+            elif type_of_tank == 2:
+                self.Object_list.append(TankClass.Tank(self.X, self.Y, self.Fast_tank, 7, 1))
             self.Tank_was_spawn += 1
             self.Count_of_tanks += 1
