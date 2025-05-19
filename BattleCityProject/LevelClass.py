@@ -43,7 +43,10 @@ class Level:
         self.Screen.blit(self.Start_Images[0], (150, 200))
         self.Screen.blit(self.Start_Images[self.Number_of_level], (550, 200))
 
-    def Start(self):
+    def Start(self, music):
+        pygame.mixer.music.load(music)
+        pygame.mixer.music.set_volume(0.2)
+        pygame.mixer.music.play(-1)
         self.Timer.start()
         clock = pygame.time.Clock()
         stat_panel = pygame.Surface((120, 512))
@@ -80,4 +83,5 @@ class Level:
 
             clock.tick(15)
 
+        pygame.mixer.music.stop()
         return updater.Game_win

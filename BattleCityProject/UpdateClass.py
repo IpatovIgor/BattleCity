@@ -8,14 +8,19 @@ import SpawnClass
 
 class Update:
     def __init__(self, bullet_list, object_in_map, screen, brush_list, stat_panel, tank_limit):
+        pygame.mixer.init()
         self.Bullet_list = bullet_list
         self.Objects_in_map = object_in_map
         self.Screen = screen
         self.timer = threading.Timer(3.0, self.Lost_game)
-        self.Player_swan = SpawnClass.Player_spawn(150, 450, object_in_map)
+        self.Player_swan = SpawnClass.PlayerSpawn(150, 450, object_in_map)
         self.Tank_spawn = SpawnClass.Tank_spawn(object_in_map, tank_limit)
         self.Brush_list = brush_list
         self.Stat_panel = stat_panel
+        self.Channel0 = pygame.mixer.Channel(0)
+        self.Ride_sound = pygame.mixer.Sound("Music/RideSound.mp3")
+        self.Channel1 = pygame.mixer.Channel(1)
+        self.Shoot_sound = pygame.mixer.Sound("Music/Shoot.mp3")
 
     Game_over_image = [pygame.transform.scale(pygame.image.load('Images/GameOver.png'), (400, 200)),
                        pygame.transform.scale(pygame.image.load('Images/Pause.png'), (400, 150))]
@@ -101,6 +106,11 @@ class Update:
             self.Game_win = True
             self.Timer_is_work = True
 
+    Channel0 = 0
+    Ride_sound = 0
+    Channel1 = 0
+    Shoot_sound = 0
+
     def Update_player(self, player):
         if self.Showing_game_over:
             return
@@ -108,13 +118,26 @@ class Update:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:
             player.Move_up(self.Objects_in_map)
+            if not self.Channel0.get_busy():
+                self.Channel0.play(self.Ride_sound, loops=0)
         elif keys[pygame.K_s]:
             player.Move_down(self.Objects_in_map)
+            if not self.Channel0.get_busy():
+                self.Channel0.play(self.Ride_sound, loops=0)
         elif keys[pygame.K_d]:
             player.Move_right(self.Objects_in_map)
+            if not self.Channel0.get_busy():
+                self.Channel0.play(self.Ride_sound, loops=0)
         elif keys[pygame.K_a]:
             player.Move_left(self.Objects_in_map)
+            if not self.Channel0.get_busy():
+                self.Channel0.play(self.Ride_sound, loops=0)
+        else:
+            self.Channel0.stop()
         if keys[pygame.K_SPACE] and self.Space_pressed_prev is False:
+            if self.Channel1.get_busy():
+                self.Channel1.stop()
+            self.Channel1.play(self.Shoot_sound, loops=0)
             player.Shoot(self.Bullet_list)
             self.Space_pressed_prev = True
         if keys[pygame.K_SPACE] is False:
