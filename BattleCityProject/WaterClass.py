@@ -1,7 +1,7 @@
 import pygame
 
 
-class Water_bloc:
+class WaterBloc:
     def __init__(self, x, y):
         self.X = x
         self.Y = y
@@ -15,5 +15,5 @@ class Water_bloc:
 
     life = 5
 
-    def Print(self, surface):
+    def print(self, surface):
         surface.blit(self.Brick_picture, (self.X, self.Y))

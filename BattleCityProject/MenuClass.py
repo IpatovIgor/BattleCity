@@ -22,13 +22,13 @@ class Menu:
         self.Tank_limit = 7
         self.Brush = []
         self.Bullet_list = []
-        self.Objects_in_map = [BrickClass.Brick_midle_bloc(310, 480, "v"), BrickClass.Brick_midle_bloc(310, 448, "v"),
-                               BrickClass.Brick_midle_bloc(310, 432, "h"), BrickClass.Brick_midle_bloc(342, 432, "h"),
-                               BrickClass.Brick_midle_bloc(374, 432, "h"), BrickClass.Brick_midle_bloc(390, 448, "v"),
-                               BrickClass.Brick_midle_bloc(390, 480, "v"), BaseClass.Base(330, 460)]
+        self.Objects_in_map = [BrickClass.BrickMiddleBloc(310, 480, "v"), BrickClass.BrickMiddleBloc(310, 448, "v"),
+                               BrickClass.BrickMiddleBloc(310, 432, "h"), BrickClass.BrickMiddleBloc(342, 432, "h"),
+                               BrickClass.BrickMiddleBloc(374, 432, "h"), BrickClass.BrickMiddleBloc(390, 448, "v"),
+                               BrickClass.BrickMiddleBloc(390, 480, "v"), BaseClass.Base(330, 460)]
         for i in range(4):
             for j in range(7):
-                self.Objects_in_map.append(BrickClass.Brick_bloc(140 * (1 + i), j * 32))
+                self.Objects_in_map.append(BrickClass.BrickBloc(140 * (1 + i), j * 32))
 
         for i in range(8):
             self.Objects_in_map.append(IronClass.IronBlock(i * 90, 350))
@@ -40,42 +40,42 @@ class Menu:
 
     def create_second_level(self):
         self.Level_music = 'Music/Music_level2.mp3'
-        self.Tank_limit = 7
+        self.Tank_limit = 9
         self.Brush = []
         self.Bullet_list = []
-        self.Objects_in_map = [BrickClass.Brick_midle_bloc(310, 480, "v"), BrickClass.Brick_midle_bloc(310, 448, "v"),
-                               BrickClass.Brick_midle_bloc(310, 432, "h"), BrickClass.Brick_midle_bloc(342, 432, "h"),
-                               BrickClass.Brick_midle_bloc(374, 432, "h"), BrickClass.Brick_midle_bloc(390, 448, "v"),
-                               BrickClass.Brick_midle_bloc(390, 480, "v"), BaseClass.Base(330, 460)]
+        self.Objects_in_map = [BrickClass.BrickMiddleBloc(310, 480, "v"), BrickClass.BrickMiddleBloc(310, 448, "v"),
+                               BrickClass.BrickMiddleBloc(310, 432, "h"), BrickClass.BrickMiddleBloc(342, 432, "h"),
+                               BrickClass.BrickMiddleBloc(374, 432, "h"), BrickClass.BrickMiddleBloc(390, 448, "v"),
+                               BrickClass.BrickMiddleBloc(390, 480, "v"), BaseClass.Base(330, 460)]
         for i in range(5):
             self.Brush.append(BrushClass.Brush(32 * i, 160))
             self.Brush.append(BrushClass.Brush(500 + 32 * i, 160))
             self.Brush.append(BrushClass.Brush(250 + 32 * i, 160))
             for j in range(5):
-                self.Objects_in_map.append(WaterClass.Water_bloc(32 * i, 32 * j))
-                self.Objects_in_map.append(WaterClass.Water_bloc(500 + 32 * i, 32 * j))
-                self.Objects_in_map.append(WaterClass.Water_bloc(250 + 32 * i, 32 * j))
+                self.Objects_in_map.append(WaterClass.WaterBloc(32 * i, 32 * j))
+                self.Objects_in_map.append(WaterClass.WaterBloc(500 + 32 * i, 32 * j))
+                self.Objects_in_map.append(WaterClass.WaterBloc(250 + 32 * i, 32 * j))
                 self.Brush.append(BrushClass.Brush(20 + 32 * i, 250 + 32 * j))
                 self.Brush.append(BrushClass.Brush(490 + 32 * i, 250 + 32 * j))
 
         for i in range(7):
-            self.Objects_in_map.append(BrickClass.Brick_midle_bloc(332, 192 + i + 32 * i, "v"))
+            self.Objects_in_map.append(BrickClass.BrickMiddleBloc(332, 192 + i + 32 * i, "v"))
             self.Objects_in_map.append(IronClass.IronBlock(300, 192 + i + 32 * i))
             self.Objects_in_map.append(IronClass.IronBlock(346, 192 + i + 32 * i))
 
     def create_third_level(self):
         self.Level_music = 'Music/Music_level3.mp3'
-        self.Tank_limit = 7
+        self.Tank_limit = 5
         self.Brush = []
         self.Bullet_list = []
-        self.Objects_in_map = [BrickClass.Brick_midle_bloc(310, 480, "v"), BrickClass.Brick_midle_bloc(310, 448, "v"),
-                               BrickClass.Brick_midle_bloc(310, 432, "h"), BrickClass.Brick_midle_bloc(342, 432, "h"),
-                               BrickClass.Brick_midle_bloc(374, 432, "h"), BrickClass.Brick_midle_bloc(390, 448, "v"),
-                               BrickClass.Brick_midle_bloc(390, 480, "v"), BaseClass.Base(330, 460)]
+        self.Objects_in_map = [BrickClass.BrickMiddleBloc(310, 480, "v"), BrickClass.BrickMiddleBloc(310, 448, "v"),
+                               BrickClass.BrickMiddleBloc(310, 432, "h"), BrickClass.BrickMiddleBloc(342, 432, "h"),
+                               BrickClass.BrickMiddleBloc(374, 432, "h"), BrickClass.BrickMiddleBloc(390, 448, "v"),
+                               BrickClass.BrickMiddleBloc(390, 480, "v"), BaseClass.Base(330, 460)]
         for i in range(21):
             for j in range(10):
                 if 7 <= i <= 15 and 4 <= j <= 6:
-                    self.Objects_in_map.append(WaterClass.Water_bloc(4 + i * 32, j * 32))
+                    self.Objects_in_map.append(WaterClass.WaterBloc(4 + i * 32, j * 32))
                     continue
                 self.Brush.append(BrushClass.Brush(4 + i * 32, j * 32))
         for i in range(14, 21):
@@ -83,7 +83,7 @@ class Menu:
                 self.Brush.append(BrushClass.Brush(4 + i * 32, j * 32))
                 self.Brush.append(BrushClass.Brush(4 + (i - 14) * 32, j * 32))
         for i in range(5):
-            self.Objects_in_map.append(BrickClass.Brick_bloc(280 + i * 32, 400))
+            self.Objects_in_map.append(BrickClass.BrickBloc(280 + i * 32, 400))
 
     Screen = 0
     Level_was_won = True
@@ -135,7 +135,7 @@ class Menu:
                 level = LevelClass.Level(self.Bullet_list, self.Brush, self.Objects_in_map, self.Screen,
                                          self.Level_num, self.Tank_limit)
                 pygame.mixer.music.stop()
-                self.Level_was_won = level.Start(self.Level_music)
+                self.Level_was_won = level.start(self.Level_music)
                 pygame.mixer.music.load('Music/MenuMusic.mp3')
                 pygame.mixer.music.play(-1)
                 self.Level_num += 1

@@ -15,5 +15,5 @@ class IronBlock:
 
     life = 10
 
-    def Print(self, surface):
+    def print(self, surface):
         surface.blit(self.Brick_picture, (self.X, self.Y))

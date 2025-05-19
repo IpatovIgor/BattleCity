@@ -1,7 +1,7 @@
 import pygame
 
 
-class Brick_bloc:
+class BrickBloc:
     def __init__(self, x, y):
         self.X = x
         self.Y = y
@@ -15,20 +15,19 @@ class Brick_bloc:
 
     life = 5
 
-    def Print(self, surface):
+    def print(self, surface):
         surface.blit(self.Brick_picture, (self.X, self.Y))
 
 
-class Brick_midle_bloc:
-    def __init__(self, x, y, dir):
-        if dir == "v":
+class BrickMiddleBloc:
+    def __init__(self, x, y, direction):
+        if direction == "v":
             self.Brick_picture = pygame.transform.scale(pygame.image.load('Images/BricMidleCub1.png'), (16, 32))
         else:
             self.Brick_picture = pygame.transform.scale(pygame.image.load('Images/BricMidleCub2.png'), (32, 16))
         self.X = x
         self.Y = y
         self.Rectangle = self.Brick_picture.get_rect(topleft=(x, y))
-
 
     Brick_picture = -1
     Rectangle = -1
@@ -38,5 +37,5 @@ class Brick_midle_bloc:
 
     life = 5
 
-    def Print(self, surface):
+    def print(self, surface):
         surface.blit(self.Brick_picture, (self.X, self.Y))

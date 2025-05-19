@@ -16,7 +16,7 @@ class Base:
     X = 0
     Y = 0
 
-    def Print(self, surface):
+    def print(self, surface):
         if self.life <= 0:
             self.Base_slide = 1
 
