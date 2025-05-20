@@ -101,7 +101,7 @@ class Menu:
         start_level_button = pygame.font.Font('Fonts/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf', 50)
         start_level_button = start_level_button.render("Strat level", False, (0, 0, 0))
         start_level_back = pygame.transform.scale(pygame.image.load('Images/White.png'), (225, 50))
-        start_level_rect = start_level_button.get_rect(topleft=(300, 200))
+        start_level_rect = start_level_button.get_rect(topleft=(265, 180))
 
         exit_button = pygame.font.Font('Fonts/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf', 40)
         exit_back = pygame.transform.scale(pygame.image.load('Images/White.png'), (70, 50))
