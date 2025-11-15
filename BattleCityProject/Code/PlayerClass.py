@@ -1,5 +1,5 @@
 import pygame
-import BulletClass
+from BattleCityProject.Code import BulletClass
 import threading
 
 
@@ -8,25 +8,25 @@ class Player:
     Can_destroy = True
     life = 2
     tank_status = 0
-    Boom_animation = [pygame.transform.scale(pygame.image.load('Images/TankBoom1.png'), (34, 34)),
-                      pygame.transform.scale(pygame.image.load('Images/TankBoom1.png'), (43, 43))]
+    Boom_animation = [pygame.transform.scale(pygame.image.load('../Images/TankBoom1.png'), (34, 34)),
+                      pygame.transform.scale(pygame.image.load('../Images/TankBoom1.png'), (43, 43))]
     IsBoom = False
     Can_to_die = False
     Non_die_animation_slide = 0
     WasBoom = False
     Boom_animation_slide = 0
 
-    Non_die_animation = [pygame.transform.scale(pygame.image.load('Images/NonKill1.png'), (50, 50)),
-                         pygame.transform.scale(pygame.image.load('Images/NonKill2.png'), (50, 50))]
+    Non_die_animation = [pygame.transform.scale(pygame.image.load('../Images/NonKill1.png'), (50, 50)),
+                         pygame.transform.scale(pygame.image.load('../Images/NonKill2.png'), (50, 50))]
 
-    Animation_list = [[pygame.transform.scale(pygame.image.load('Images/TankYellow1.png'), (34, 43)),
-                       pygame.transform.scale(pygame.image.load('Images/TankYellow5.png'), (34, 43))],
-                      [pygame.transform.scale(pygame.image.load('Images/TankYellow2.png'), (43, 34)),
-                       pygame.transform.scale(pygame.image.load('Images/TankYellow6.png'), (43, 34))],
-                      [pygame.transform.scale(pygame.image.load('Images/TankYellow3.png'), (34, 43)),
-                       pygame.transform.scale(pygame.image.load('Images/TankYellow7.png'), (34, 43))],
-                      [pygame.transform.scale(pygame.image.load('Images/TankYellow4.png'), (43, 34)),
-                       pygame.transform.scale(pygame.image.load('Images/TankYellow8.png'), (43, 34))]]
+    Animation_list = [[pygame.transform.scale(pygame.image.load('../Images/TankYellow1.png'), (34, 43)),
+                       pygame.transform.scale(pygame.image.load('../Images/TankYellow5.png'), (34, 43))],
+                      [pygame.transform.scale(pygame.image.load('../Images/TankYellow2.png'), (43, 34)),
+                       pygame.transform.scale(pygame.image.load('../Images/TankYellow6.png'), (43, 34))],
+                      [pygame.transform.scale(pygame.image.load('../Images/TankYellow3.png'), (34, 43)),
+                       pygame.transform.scale(pygame.image.load('../Images/TankYellow7.png'), (34, 43))],
+                      [pygame.transform.scale(pygame.image.load('../Images/TankYellow4.png'), (43, 34)),
+                       pygame.transform.scale(pygame.image.load('../Images/TankYellow8.png'), (43, 34))]]
     Speed = 4
     X = -1
     Y = -1

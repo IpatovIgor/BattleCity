@@ -1,17 +1,17 @@
 import pygame
 
-import PlayerClass
+from BattleCityProject.Code import PlayerClass
 
 
 class Bullet:
     Boom_animation_slide = 0
-    Boom_animation = [[pygame.transform.scale(pygame.image.load('Images/Boom1.png'), (16, 16)), 5],
-                      [pygame.transform.scale(pygame.image.load('Images/Boom2.png'), (18, 18)), 6],
-                      [pygame.transform.scale(pygame.image.load('Images/Boom3.png'), (20, 20)), 7]]
-    Drive_animation = [pygame.transform.scale(pygame.image.load('Images/Bullet1.png'), (6, 8)),
-                       pygame.transform.scale(pygame.image.load('Images/Bullet2.png'), (8, 6)),
-                       pygame.transform.scale(pygame.image.load('Images/Bullet3.png'), (6, 8)),
-                       pygame.transform.scale(pygame.image.load('Images/Bullet4.png'), (8, 6))]
+    Boom_animation = [[pygame.transform.scale(pygame.image.load('../Images/Boom1.png'), (16, 16)), 5],
+                      [pygame.transform.scale(pygame.image.load('../Images/Boom2.png'), (18, 18)), 6],
+                      [pygame.transform.scale(pygame.image.load('../Images/Boom3.png'), (20, 20)), 7]]
+    Drive_animation = [pygame.transform.scale(pygame.image.load('../Images/Bullet1.png'), (6, 8)),
+                       pygame.transform.scale(pygame.image.load('../Images/Bullet2.png'), (8, 6)),
+                       pygame.transform.scale(pygame.image.load('../Images/Bullet3.png'), (6, 8)),
+                       pygame.transform.scale(pygame.image.load('../Images/Bullet4.png'), (8, 6))]
     X = -1
     Y = -1
     Speed = 10

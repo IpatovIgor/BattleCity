@@ -7,8 +7,8 @@ class Base:
         self.X = x
         self.Y = y
 
-    Base_picture = [pygame.transform.scale(pygame.image.load('Images/Bird.png'), (50, 50)),
-                    pygame.transform.scale(pygame.image.load('Images/Bull.png'), (50, 50))]
+    Base_picture = [pygame.transform.scale(pygame.image.load('../Images/Bird.png'), (50, 50)),
+                    pygame.transform.scale(pygame.image.load('../Images/Bull.png'), (50, 50))]
     Base_slide = 0
     Rectangle = -1
     Can_destroy = True

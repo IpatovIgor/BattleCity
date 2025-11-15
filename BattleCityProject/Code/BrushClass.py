@@ -6,7 +6,7 @@ class Brush:
         self.X = x
         self.Y = y
 
-    Brick_picture = pygame.transform.scale(pygame.image.load('Images/brush.png'), (32, 32))
+    Brick_picture = pygame.transform.scale(pygame.image.load('../Images/brush.png'), (32, 32))
     X = -1
     Y = -1
 

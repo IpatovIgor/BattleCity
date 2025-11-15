@@ -1,6 +1,7 @@
 import pygame
 import UpdateClass
 import threading
+import os
 
 
 class Level:
@@ -24,18 +25,33 @@ class Level:
     Bullet_list = 0
     Brush = 0
     Objects_in_map = 0
-    Start_Images = [pygame.transform.scale(pygame.image.load('Images/Stage.png'), (400, 100)),
-                    pygame.transform.scale(pygame.image.load('Images/Num1.png'), (100, 100)),
-                    pygame.transform.scale(pygame.image.load('Images/Num2.png'), (100, 100)),
-                    pygame.transform.scale(pygame.image.load('Images/Num3.png'), (100, 100))]
+    Start_Images = [pygame.transform.scale(pygame.image.load('../Images/Stage.png'), (400, 100)),
+                    pygame.transform.scale(pygame.image.load('../Images/Num1.png'), (100, 100)),
+                    pygame.transform.scale(pygame.image.load('../Images/Num2.png'), (100, 100)),
+                    pygame.transform.scale(pygame.image.load('../Images/Num3.png'), (100, 100))]
 
     def show_start_image(self):
-        back_ground_image = pygame.transform.scale(pygame.image.load('Images/backGround.png'), (800, 512))
+        back_ground_image = pygame.transform.scale(pygame.image.load('../Images/backGround.png'), (800, 512))
         self.Screen.blit(back_ground_image, (0, 0))
         self.Screen.blit(self.Start_Images[0], (150, 200))
         self.Screen.blit(self.Start_Images[self.Number_of_level], (550, 200))
 
     def start(self, music):
+        # Получаем абсолютный путь к файлу музыки
+        if not os.path.exists(music):
+            # Если файл не найден, попробуем найти в других возможных местах
+            music_paths = [
+                music,
+                music.replace('../', ''),
+                os.path.join(os.path.dirname(__file__), music),
+                os.path.join(os.path.dirname(__file__), music.replace('../', ''))
+            ]
+
+            for path in music_paths:
+                if os.path.exists(path):
+                    music = path
+                    break
+
         pygame.mixer.music.load(music)
         pygame.mixer.music.set_volume(0.2)
         pygame.mixer.music.play(-1)
@@ -43,9 +59,9 @@ class Level:
         clock = pygame.time.Clock()
         stat_panel = pygame.Surface((120, 512))
         stat_panel.fill((255, 255, 255))
-        back_ground_image = pygame.image.load('Images/backGround.png')
+        back_ground_image = pygame.image.load('../Images/backGround.png')
         back_ground_image = pygame.transform.scale(back_ground_image, (800, 512))
-        panel_ground_image = pygame.image.load('Images/White.png')
+        panel_ground_image = pygame.image.load('../Images/White.png')
         panel_ground_image = pygame.transform.scale(panel_ground_image, (120, 512))
         updater = UpdateClass.Update(self.Bullet_list, self.Objects_in_map,
                                      self.Screen, self.Brush, stat_panel, self.Tank_limit)

@@ -1,10 +1,7 @@
 import pygame
-import BrickClass
-import IronClass
 import WaterClass
-import BaseClass
-import BrushClass
-import LevelClass
+from BattleCityProject.Code import BaseClass, BrickClass, BrushClass, IronClass, LevelClass
+import os
 
 
 class Menu:
@@ -18,7 +15,7 @@ class Menu:
     Level_music = 0
 
     def create_first_level(self):
-        self.Level_music = 'Music/Music_level1.mp3'
+        self.Level_music = '../Music/Music_level1.mp3'
         self.Tank_limit = 7
         self.Brush = []
         self.Bullet_list = []
@@ -39,7 +36,7 @@ class Menu:
             self.Brush.append(BrushClass.Brush(640 - i * 32, 480))
 
     def create_second_level(self):
-        self.Level_music = 'Music/Music_level2.mp3'
+        self.Level_music = '../Music/Music_level2.mp3'
         self.Tank_limit = 9
         self.Brush = []
         self.Bullet_list = []
@@ -64,7 +61,7 @@ class Menu:
             self.Objects_in_map.append(IronClass.IronBlock(346, 192 + i + 32 * i))
 
     def create_third_level(self):
-        self.Level_music = 'Music/Music_level3.mp3'
+        self.Level_music = '../Music/Music_level3.mp3'
         self.Tank_limit = 5
         self.Brush = []
         self.Bullet_list = []
@@ -87,24 +84,24 @@ class Menu:
 
     Screen = 0
     Level_was_won = True
-    Back_ground = pygame.transform.scale(pygame.image.load('Images/backGround.png'), (800, 512))
+    Back_ground = pygame.transform.scale(pygame.image.load('../Images/backGround.png'), (800, 512))
     Level_num = 1
     Game_was_won = False
 
     def start(self):
-        pygame.mixer.music.load('Music/MenuMusic.mp3')
+        pygame.mixer.music.load('../Music/MenuMusic.mp3')
         pygame.mixer.music.set_volume(0.5)
         pygame.mixer.music.play(-1)
 
-        win_ground = pygame.transform.scale(pygame.image.load('Images/YouWin.jpg'), (800, 512))
-        back_ground_image = pygame.transform.scale(pygame.image.load('Images/Menu.jpg'), (800, 512))
-        start_level_button = pygame.font.Font('Fonts/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf', 50)
-        start_level_button = start_level_button.render("Strat level", False, (0, 0, 0))
-        start_level_back = pygame.transform.scale(pygame.image.load('Images/White.png'), (225, 50))
+        win_ground = pygame.transform.scale(pygame.image.load('../Images/YouWin.jpg'), (800, 512))
+        back_ground_image = pygame.transform.scale(pygame.image.load('../Images/Menu.jpg'), (800, 512))
+        start_level_button = pygame.font.Font('../Fonts/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf', 50)
+        start_level_button = start_level_button.render("Start level", False, (0, 0, 0))
+        start_level_back = pygame.transform.scale(pygame.image.load('../Images/White.png'), (225, 50))
         start_level_rect = start_level_button.get_rect(topleft=(265, 180))
 
-        exit_button = pygame.font.Font('Fonts/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf', 40)
-        exit_back = pygame.transform.scale(pygame.image.load('Images/White.png'), (70, 50))
+        exit_button = pygame.font.Font('../Fonts/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf', 40)
+        exit_back = pygame.transform.scale(pygame.image.load('../Images/White.png'), (70, 50))
         exit_button = exit_button.render("Exit", False, (0, 0, 0))
         exit_rect = exit_button.get_rect(topleft=(350, 270))
         clock = pygame.time.Clock()
@@ -136,7 +133,7 @@ class Menu:
                                          self.Level_num, self.Tank_limit)
                 pygame.mixer.music.stop()
                 self.Level_was_won = level.start(self.Level_music)
-                pygame.mixer.music.load('Music/MenuMusic.mp3')
+                pygame.mixer.music.load('../Music/MenuMusic.mp3')
                 pygame.mixer.music.play(-1)
                 self.Level_num += 1
             pygame.display.update()

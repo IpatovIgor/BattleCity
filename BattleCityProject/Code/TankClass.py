@@ -1,5 +1,5 @@
 import pygame
-import BulletClass
+from BattleCityProject.Code import BulletClass
 import random
 import threading
 
@@ -10,13 +10,13 @@ class Tank:
     Wait = 0
     Need_to_shoot = 0
     tank_status = 0
-    Spawn_animation = [pygame.transform.scale(pygame.image.load('Images/Spawn1.png'), (43, 43)),
-                       pygame.transform.scale(pygame.image.load('Images/Spawn2.png'), (43, 43)),
-                       pygame.transform.scale(pygame.image.load('Images/Spawn3.png'), (43, 43)),
-                       pygame.transform.scale(pygame.image.load('Images/Spawn4.png'), (43, 43))]
+    Spawn_animation = [pygame.transform.scale(pygame.image.load('../Images/Spawn1.png'), (43, 43)),
+                       pygame.transform.scale(pygame.image.load('../Images/Spawn2.png'), (43, 43)),
+                       pygame.transform.scale(pygame.image.load('../Images/Spawn3.png'), (43, 43)),
+                       pygame.transform.scale(pygame.image.load('../Images/Spawn4.png'), (43, 43))]
     Animation_list = 0
-    Boom_animation = [pygame.transform.scale(pygame.image.load('Images/TankBoom1.png'), (34, 34)),
-                      pygame.transform.scale(pygame.image.load('Images/TankBoom1.png'), (43, 43))]
+    Boom_animation = [pygame.transform.scale(pygame.image.load('../Images/TankBoom1.png'), (34, 34)),
+                      pygame.transform.scale(pygame.image.load('../Images/TankBoom1.png'), (43, 43))]
     Spawn_slide = 0
     Speed = 4
     Can_destroy = True

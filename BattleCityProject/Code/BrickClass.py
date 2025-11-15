@@ -7,7 +7,7 @@ class BrickBloc:
         self.Y = y
         self.Rectangle = self.Brick_picture.get_rect(topleft=(x, y))
 
-    Brick_picture = pygame.transform.scale(pygame.image.load('Images/Brick.png'), (32, 32))
+    Brick_picture = pygame.transform.scale(pygame.image.load('../Images/Brick.png'), (32, 32))
     Rectangle = -1
     Can_destroy = True
     X = -1
@@ -22,9 +22,9 @@ class BrickBloc:
 class BrickMiddleBloc:
     def __init__(self, x, y, direction):
         if direction == "v":
-            self.Brick_picture = pygame.transform.scale(pygame.image.load('Images/BricMidleCub1.png'), (16, 32))
+            self.Brick_picture = pygame.transform.scale(pygame.image.load('../Images/BricMidleCub1.png'), (16, 32))
         else:
-            self.Brick_picture = pygame.transform.scale(pygame.image.load('Images/BricMidleCub2.png'), (32, 16))
+            self.Brick_picture = pygame.transform.scale(pygame.image.load('../Images/BricMidleCub2.png'), (32, 16))
         self.X = x
         self.Y = y
         self.Rectangle = self.Brick_picture.get_rect(topleft=(x, y))

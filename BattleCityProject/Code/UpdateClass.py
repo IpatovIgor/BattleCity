@@ -1,9 +1,6 @@
 import pygame
 import threading
-import BaseClass
-import PlayerClass
-import TankClass
-import SpawnClass
+from BattleCityProject.Code import BaseClass, TankClass, PlayerClass, SpawnClass
 
 
 class Update:
@@ -18,12 +15,12 @@ class Update:
         self.Brush_list = brush_list
         self.Stat_panel = stat_panel
         self.Channel0 = pygame.mixer.Channel(0)
-        self.Ride_sound = pygame.mixer.Sound("Music/RideSound.mp3")
+        self.Ride_sound = pygame.mixer.Sound("../Music/RideSound.mp3")
         self.Channel1 = pygame.mixer.Channel(1)
-        self.Shoot_sound = pygame.mixer.Sound("Music/Shoot.mp3")
+        self.Shoot_sound = pygame.mixer.Sound("../Music/Shoot.mp3")
 
-    Game_over_image = [pygame.transform.scale(pygame.image.load('Images/GameOver.png'), (400, 200)),
-                       pygame.transform.scale(pygame.image.load('Images/Pause.png'), (400, 150))]
+    Game_over_image = [pygame.transform.scale(pygame.image.load('../Images/GameOver.png'), (400, 200)),
+                       pygame.transform.scale(pygame.image.load('../Images/Pause.png'), (400, 150))]
 
     def lost_game(self):
         self.Game_is_Lost = True
@@ -43,7 +40,7 @@ class Update:
     Brush_list = []
     Game_win = False
     Showing_game_over = False
-    Back_ground_image = pygame.transform.scale(pygame.image.load('Images/backGround.png'), (800, 512))
+    Back_ground_image = pygame.transform.scale(pygame.image.load('../Images/backGround.png'), (800, 512))
 
     def update_bullets(self):
         if self.Showing_game_over:
@@ -150,8 +147,8 @@ class Update:
         for brush in self.Brush_list:
             brush.print(self.Screen)
 
-    Heart = pygame.transform.scale(pygame.image.load('Images/Heart.png'), (30, 30))
-    Tank_image = pygame.transform.scale(pygame.image.load('Images/GreenTank11.png'), (30, 30))
+    Heart = pygame.transform.scale(pygame.image.load('../Images/Heart.png'), (30, 30))
+    Tank_image = pygame.transform.scale(pygame.image.load('../Images/GreenTank11.png'), (30, 30))
 
     def update_stat(self):
         if self.Showing_game_over:
